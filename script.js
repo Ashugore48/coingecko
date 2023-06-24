@@ -16,6 +16,7 @@ fetch(
       name: item.name,
       id: item.symbol,
       currentPrice: item.current_price,
+      totalVolume : item.total_volume,
       marketCap: item.market_cap,
       percentageChange24h: item.market_cap_change_percentage_24h,
     }));
@@ -36,6 +37,7 @@ async function fetchData() {
       name: item.name,
       id: item.symbol,
       currentPrice: item.current_price,
+      totalVolume : item.total_volume,
       marketCap: item.market_cap,
       percentageChange24h: item.market_cap_change_percentage_24h,
     }));
@@ -88,6 +90,13 @@ function renderTable(data) {
     const currentPriceCellclass = currentPriceCell.classList;
     currentPriceCellclass.add("align-class");
     row.appendChild(currentPriceCell);
+
+    //make total volume row
+    const totalVolumeCell = document.createElement("td");
+    totalVolumeCell.textContent = "$" + item.totalVolume;
+    const totalVolumeCellClass = totalVolumeCell.classList;
+    totalVolumeCellClass.add("align-class");
+    row.appendChild(totalVolumeCell);
 
     const percentageChange24hCell = document.createElement("td");
     const percentageChange24hCellClass = percentageChange24hCell.classList;
