@@ -25,27 +25,6 @@ fetch(
   .catch((error) => {
     console.error("Error:", error);
   });
-async function fetchData() {
-  try {
-    const response = await fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
-    );
-    const data = await response.json();
-
-    coinData = data.map((item) => ({
-      logo: item.image,
-      name: item.name,
-      id: item.symbol,
-      currentPrice: item.current_price,
-      totalVolume : item.total_volume,
-      marketCap: item.market_cap,
-      percentageChange24h: item.market_cap_change_percentage_24h,
-    }));
-    renderTable(coinData);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
 searchInput.addEventListener("input", () => {
   const searchValue = searchInput.value.toLowerCase();
   const filteredData = coinData.filter((coin) =>
@@ -91,7 +70,6 @@ function renderTable(data) {
     currentPriceCellclass.add("align-class");
     row.appendChild(currentPriceCell);
 
-    //make total volume row
     const totalVolumeCell = document.createElement("td");
     totalVolumeCell.textContent = "$" + item.totalVolume;
     const totalVolumeCellClass = totalVolumeCell.classList;
